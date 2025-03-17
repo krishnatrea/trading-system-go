@@ -1,63 +1,75 @@
-# Trading system using go
+# Trading System using Go
 
-Simulate Order process in a trading system.
- - Create a order
- - Maintain orderbook
- - Match the order with orderbook
+A simple trading system that simulates the order process, including:
+- Creating an order
+- Maintaining an order book
+- Matching orders within the order book
 
- Tech stack used
- --------------------
- - Backend server - Go
- - Kafka
- - Redis (orderbook)
- - Postgres (db)
+## Tech Stack
+- **Backend Server**: Go
+- **Message Broker**: Kafka
+- **In-Memory Storage**: Redis (for the order book)
+- **Database**: PostgreSQL
+
+---
 
 ## Running the Application
 
-To run the application, use the following command.  
-Make sure you already installed [Docker](https://www.docker.com/).
-
+To run the application, use the following command. Ensure you have [Docker](https://www.docker.com/) installed on your system.
 
 ```bash
 docker-compose up
 ```
 
+---
 
+## API Endpoints
 
-### Create Order Api Enpoint
+### Create Order
+
+#### Endpoint
 ```bash
-http://localhost:8000/create-order
+POST http://localhost:8000/create-order
 ```
 
-Request Body
+#### Request Body
+
+**Creating an Ask (Sell) Order**
 ```json
-//create a Ask(sell) order
 {
-    "user_id":1000000,
-    "order_type":4,
-    "type":"ask",
-    "price":100,
-    "volume":150,
-    "buying_pair":"usd",
-    "selling_pair":"btc"
-}
-
-//create a Bid(buy) order
-{
-    "user_id":1000000,
-    "order_type":4,
-    "type":"bid",
-    "price":100,
-    "volume":150,
-    "buying_pair":"usd",
-    "selling_pair":"btc"
+    "user_id": 1000000,
+    "order_type": 4,
+    "type": "ask",
+    "price": 100,
+    "volume": 150,
+    "buying_pair": "usd",
+    "selling_pair": "btc"
 }
 ```
 
-Get orders API
-```
-http://localhost:8000/get-orders
+**Creating a Bid (Buy) Order**
+```json
+{
+    "user_id": 1000000,
+    "order_type": 4,
+    "type": "bid",
+    "price": 100,
+    "volume": 150,
+    "buying_pair": "usd",
+    "selling_pair": "btc"
+}
 ```
 
-# trading-system-go
-# trading-system-go
+---
+
+### Get Orders
+
+#### Endpoint
+```bash
+GET http://localhost:8000/get-orders
+```
+
+---
+
+
+
